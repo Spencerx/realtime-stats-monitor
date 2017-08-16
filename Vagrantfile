@@ -21,7 +21,7 @@ yum -y install python-pip git python2-boto \
                 gcc libffi-devel openssl-devel python2-boto3 \
                 python-click python-six pyOpenSSL httpd-tools \
                 java-1.8.0-openjdk-headless python-passlib \
-                docker docker-compose
+                docker docker-compose npm
 
 
 # Clone repository
@@ -30,9 +30,15 @@ cd /usr/share/realtime-monitor
 
 git clone https://github.com/nearform/stats.git 
 git clone https://github.com/nearform/stats-to-elasticsearch.git
-git clone https://github.com/nearform/slow-rest-api.git
 git clone https://github.com/nearform/create-stats-dashboard.git
+git clone https://github.com/nearform/slow-rest-api.git
+cd slow-rest-api 
+git checkout stats-demo
+cd stats-demo
 
+npm i -g autocannon
+npm i -g @nearform/create-stats-dashboard
+npm i -g concurrently
 
 SCRIPT
 
