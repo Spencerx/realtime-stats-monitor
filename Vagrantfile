@@ -25,36 +25,24 @@ yum -y install python-pip git python2-boto \
 
 
 # Clone repository
-mkdir -p /usr/share/stats
-mkdir -p /usr/share/stats-to-elasticsearch
-mkdir -p /usr/share/slow-rest-api 
-mkdir -p /usr/share/create-stats-dashboard
+mkdir -p /usr/share/realtime-monitor
+cd /usr/share/realtime-monitor
 
-cd /usr/share/stats
-git clone https://github.com/nearform/stats.git stats
-
-cd /usr/share/stats-to-elasticsearch
-git clone https://github.com/nearform/stats-to-elasticsearch.git stats-to-elasticsearch
-
-cd /usr/share/slow-rest-api 
-git clone https://github.com/nearform/slow-rest-api.git slow-rest-api 
-
-cd /usr/share/create-stats-dashboard
-git clone https://github.com/nearform/create-stats-dashboard.git create-stats-dashboard
-
-
-
+git clone https://github.com/nearform/stats.git 
+git clone https://github.com/nearform/stats-to-elasticsearch.git
+git clone https://github.com/nearform/slow-rest-api.git
+git clone https://github.com/nearform/create-stats-dashboard.git
 
 
 SCRIPT
 
 $shell= <<SCRIPT
-#mkdir -p /home/vagrant/.ssh && ssh-keygen -t rsa -N '' -f /home/vagrant/.ssh/ocp
-
-
+# start docker
+sudo systemctl start docker
+sudo sysctl -w vm.max_map_count=262144  #fix memory issue for es
 
 # After login, change to openshift-ansible-aws directory
-cd /usr/share
+cd /usr/share/realtime-monitor
 
 SCRIPT
 
@@ -67,9 +55,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   config.vm.synced_folder "./", "/vagrant", disabled: true
-  config.vm.synced_folder "./", "/usr/src/opensource-stats-demo"
   config.vm.network "forwarded_port", guest: 5601, host: 5601 # kibana
-  config.vm.network "forwarded_port", guest: 5601, host: 5601 # elasticsearch
+  config.vm.network "forwarded_port", guest: 9200, host: 9200 # elasticsearch
+  config.vm.network "forwarded_port", guest: 9300, host: 9300 # elasticsearch
   config.vm.provision "shell", inline: $provision
   config.vm.provision "shell", inline: $shell, privileged: false
 
