@@ -19,7 +19,7 @@ Verify:
 Open browser to http://localhost:5601/
 
 
-This VM will clone the following repos and install autocannan and concurenlty
+We will clone the following repos and install autocannan and concurrenlty
 
 - [https://github.com/nearform/stats](https://github.com/nearform/stats)
 - [https://github.com/nearform/stats-to-elasticsearch](https://github.com/nearform/stats-to-elasticsearch)
@@ -32,5 +32,3 @@ You can find the source here:
 ```vagant ssh```
 
 ``` cd /usr/share/realtime-monitor ```
-
-
