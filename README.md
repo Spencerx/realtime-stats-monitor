@@ -7,12 +7,12 @@ It requires a VM installed.  By default it uses [VirtualBox](https://www.virtual
 
 Setup
 
-``` git clone https://github.com/nearform/realtime-stats-monitor.git ```
+``` 
+git clone https://github.com/nearform/realtime-stats-monitor.git 
 
-``` cd realtime-stats-monitor ```
+cd realtime-stats-monitor
 
-
-``` make ```
+make ```
 
 Verify:
 
