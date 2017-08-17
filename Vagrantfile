@@ -21,11 +21,27 @@ yum -y install python-pip git python2-boto \
                 gcc libffi-devel openssl-devel python2-boto3 \
                 python-click python-six pyOpenSSL httpd-tools \
                 java-1.8.0-openjdk-headless python-passlib \
-                docker docker-compose npm
+                docker docker-compose
 
+
+
+yum -y install nodejs
+
+# Startup docker
+
+systemctl start docker
+
+# Fix memory issue for es
+sysctl -w vm.max_map_count=262144  
 
 # Clone repository
 mkdir -p /usr/share/realtime-monitor
+
+mkdir -p /usr/share/node
+cd /usr/share/node
+curl --silent --location https://rpm.nodesource.com/setup_8.x | bash
+yum -y install nodejs
+
 cd /usr/share/realtime-monitor
 
 git clone https://github.com/nearform/stats.git 
@@ -35,17 +51,20 @@ git clone https://github.com/nearform/slow-rest-api.git
 cd slow-rest-api 
 git checkout stats-demo
 cd stats-demo
+docker-compose  build --no-cache
+docker-compose up
 
-npm i -g autocannon
-npm i -g @nearform/create-stats-dashboard
-npm i -g concurrently
+
+npm i -g autocannon --unsafe-perm
+npm i -g @nearform/create-stats-dashboard  --unsafe-perm
+npm i -g concurrently  --unsafe-perm
 
 SCRIPT
 
 $shell= <<SCRIPT
 # start docker
-sudo systemctl start docker
-sudo sysctl -w vm.max_map_count=262144  #fix memory issue for es
+#sudo systemctl start docker
+#sudo sysctl -w vm.max_map_count=262144  #fix memory issue for es
 
 # After login, change to openshift-ansible-aws directory
 cd /usr/share/realtime-monitor
