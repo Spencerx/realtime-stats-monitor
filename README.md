@@ -12,7 +12,8 @@ git clone https://github.com/nearform/realtime-stats-monitor.git
 
 cd realtime-stats-monitor
 
-make ```
+make
+```
 
 Verify:
 
