@@ -18,3 +18,19 @@ Verify:
 
 Open browser to http://localhost:5601/
 
+
+This VM will clone the following repos and install autocannan and concurenlty
+
+- [https://github.com/nearform/stats](https://github.com/nearform/stats)
+- [https://github.com/nearform/stats-to-elasticsearch](https://github.com/nearform/stats-to-elasticsearch)
+- [https://github.com/nearform/create-stats-dashboard](https://github.com/nearform/create-stats-dashboard)
+- [https://github.com/nearform/slow-rest-api.git](https://github.com/nearform/slow-rest-api.git)
+
+
+You can find the source here:
+
+```vagant ssh```
+
+``` cd \usr\share\realtime-minotor ```
+
+
