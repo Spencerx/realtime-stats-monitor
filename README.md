@@ -31,6 +31,6 @@ You can find the source here:
 
 ```vagant ssh```
 
-``` cd \usr\share\realtime-minotor ```
+``` cd /usr/share/realtime-monitor ```
 
 
