@@ -29,6 +29,8 @@ We will clone the following repos and install autocannan and concurrenlty
 
 You can find the source here:
 
-```vagant ssh```
+```
+vagant ssh
 
-``` cd /usr/share/realtime-monitor ```
+cd /usr/share/realtime-monitor
+ ```
