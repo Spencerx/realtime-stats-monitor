@@ -62,9 +62,6 @@ npm i -g concurrently  --unsafe-perm
 SCRIPT
 
 $shell= <<SCRIPT
-# start docker
-#sudo systemctl start docker
-#sudo sysctl -w vm.max_map_count=262144  #fix memory issue for es
 
 # After login, change to openshift-ansible-aws directory
 cd /usr/share/realtime-monitor

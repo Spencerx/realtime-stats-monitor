@@ -12,4 +12,9 @@ Setup
 ``` cd realtime-stats-monitor ```
 
 
-``` 
+``` make ```
+
+Verify:
+
+Open browser to http://localhost:5601/
+
