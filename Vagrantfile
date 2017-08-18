@@ -23,10 +23,6 @@ yum -y install python-pip git python2-boto \
                 java-1.8.0-openjdk-headless python-passlib \
                 docker docker-compose
 
-
-
-yum -y install nodejs
-
 # Startup docker
 
 systemctl start docker
@@ -42,6 +38,12 @@ cd /usr/share/node
 curl --silent --location https://rpm.nodesource.com/setup_8.x | bash
 yum -y install nodejs
 
+# install node tools
+sudo npm i -g autocannon --unsafe-perm
+sudo npm i -g @nearform/create-stats-dashboard  --unsafe-perm
+sudo npm i -g concurrently  --unsafe-perm
+
+
 cd /usr/share/realtime-monitor
 
 git clone https://github.com/nearform/stats.git 
@@ -55,13 +57,12 @@ docker-compose  build --no-cache
 docker-compose up
 
 
-npm i -g autocannon --unsafe-perm
-npm i -g @nearform/create-stats-dashboard  --unsafe-perm
-npm i -g concurrently  --unsafe-perm
+
 
 SCRIPT
 
 $shell= <<SCRIPT
+
 
 # After login, change to openshift-ansible-aws directory
 cd /usr/share/realtime-monitor
