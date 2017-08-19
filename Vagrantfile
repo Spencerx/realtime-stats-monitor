@@ -30,27 +30,16 @@ systemctl start docker
 # Fix memory issue for es
 sysctl -w vm.max_map_count=262144  
 
-# Clone repository
 mkdir -p /usr/share/realtime-monitor
-
-mkdir -p /usr/share/node
-cd /usr/share/node
-curl --silent --location https://rpm.nodesource.com/setup_8.x | bash
-yum -y install nodejs
-
-# install node tools
-npm i -g autocannon --unsafe-perm
-npm i -g @nearform/create-stats-dashboard  --unsafe-perm
-npm i -g concurrently  --unsafe-perm
-
-
 cd /usr/share/realtime-monitor
 
 git clone https://github.com/nearform/stats.git 
 git clone https://github.com/nearform/stats-to-elasticsearch.git
 git clone https://github.com/nearform/create-stats-dashboard.git
 git clone https://github.com/nearform/slow-rest-api.git
-cd slow-rest-api 
+
+# Clone repository
+cd /usr/share/realtime-monitor/slow-rest-api
 git checkout stats-demo
 cd stats-demo
 docker-compose  build --no-cache
@@ -59,13 +48,24 @@ docker-compose up
 
 
 
+
 SCRIPT
 
 $shell= <<SCRIPT
 
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+source ~/.bashrc
+
+nvm install node
+
+# install node tools
+npm i -g autocannon
+npm i -g @nearform/create-stats-dashboard
+npm i -g concurrently
+
 
 # After login, change to openshift-ansible-aws directory
-cd /usr/share/realtime-monitor
+
 
 SCRIPT
 
