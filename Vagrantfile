@@ -39,9 +39,9 @@ curl --silent --location https://rpm.nodesource.com/setup_8.x | bash
 yum -y install nodejs
 
 # install node tools
-sudo npm i -g autocannon --unsafe-perm
-sudo npm i -g @nearform/create-stats-dashboard  --unsafe-perm
-sudo npm i -g concurrently  --unsafe-perm
+npm i -g autocannon --unsafe-perm
+npm i -g @nearform/create-stats-dashboard  --unsafe-perm
+npm i -g concurrently  --unsafe-perm
 
 
 cd /usr/share/realtime-monitor
